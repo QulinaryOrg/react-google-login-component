@@ -99,7 +99,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function GoogleLogin(props) {
 	    _classCallCheck(this, GoogleLogin);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(GoogleLogin).call(this, props));
+	    return _possibleConstructorReturn(this, (GoogleLogin.__proto__ || Object.getPrototypeOf(GoogleLogin)).call(this, props));
 	  }
 
 	  _createClass(GoogleLogin, [{
@@ -132,12 +132,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    value: function clickHandler() {
 	      var socialId = this.props.socialId,
 	          responseHandler = this.props.responseHandler,
-	          scope = this.props.scope;
+	          scope = this.props.scope,
+	          fetchBasicProfile = this.props.fetchBasicProfile || false;
 
 	      gapi.load('auth2', function () {
 	        var auth2 = gapi.auth2.init({
 	          client_id: socialId,
-	          fetch_basic_profile: false,
+	          fetch_basic_profile: fetchBasicProfile,
 	          scope: scope
 	        });
 	        auth2.signIn().then(function (googleUser) {
